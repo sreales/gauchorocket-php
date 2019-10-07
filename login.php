@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
     </head>
-    <bod>
+    <body>
         <header>
         </header>
         <nav></nav>
         <article>
+            <?php
+            session_start(); 
+            if(isset($_SESSION["login"])){
+                header("Location: index.php");
+                    exit;
+                }
+            ?>
             <form method="post" action="login.php" enctype="application/x-www-form-urlencoded">
-                <label> Usuario:</label>
-                <input type="text" name="usuario" required>
-                <br>
+                <div class="form-group">
+                    <label> Usuario:</label>
+                    <input type="text" name="usuario" class="third" placeholder="Usuario" required>
+                </div>
+                
+                <div class="form-group" >
                 <label> Contraseña:</label>
-                <input type="password" name="upassword" required>
+                <input type="password" name="upassword" class="third" placeholder="Contraseña" required>
+                </div>
+                <input type="submit" name="login" class="btn btn-default" >
                 <br>
-                <input type="submit" name="login" >
-                <br>
-                <a href="registrar.php">Registrar</a>
+                <a href="registrar.php" class="stretched-link" >Registrar</a>
             </form>
             <?php
-                session_start();
+                
+                //session_start();
                 if(isset($_POST["usuario"])){
+
+
                     /* connectar a la base de datos */
                     $host = "localhost";
                     $us = "root";
@@ -52,5 +73,5 @@
                 /* redirigir */
             ?>
         </article>
-    </bod>
+    </body>
 </html>
